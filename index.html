@@ -25,19 +25,19 @@
 
   <!-- WebXR Scene -->
   <a-scene
-    webxr="referenceSpaceType: local-floor; optionalFeatures: dom-overlay, hit-test, depth-sensing, hand-tracking;"
+    webxr="referenceSpaceType: local-floor; requiredFeatures: hit-test, dom-overlay, camera-access; optionalFeatures: depth-sensing, hand-tracking;"
     xr-mode-ui="enabled: true"
-    renderer="colorManagement: true; alpha: true;"
-    embedded>
+    embedded
+    renderer="colorManagement: true; alpha: true;">
     
+    <!-- Transparent Background to Enable Camera Passthrough -->
+    <a-entity camera look-controls></a-entity>
+
     <!-- Virtual 3D Icon in AR Space -->
     <a-image src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" 
              position="0 1.5 -2" scale="1 1 1"
              onclick="alert('Icon Clicked!')">
     </a-image>
-
-    <!-- AR Camera -->
-    <a-entity camera></a-entity>
   </a-scene>
 
   <script>
