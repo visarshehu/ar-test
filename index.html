@@ -2,16 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>AR.js Transparent Element</title>
+    <title>WebXR AR - Transparent Plane</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-<a-scene webxr="optionalFeatures: hit-test;">
-    <a-entity id="target" geometry="primitive: plane; height: 1; width: 2"
-              material="opacity: 0.5; transparent: true; color: blue;"></a-entity>
-    
-    <a-camera id="xr-camera" position="0 1.6 0"></a-camera>
-</a-scene>
+    <a-scene
+      xr-mode-ui="enabled: true"
+      webxr="optionalFeatures: local-floor, hit-test"
+      renderer="colorManagement: true;">
+      
+      <!-- Transparent Floating Plane -->
+      <a-plane position="0 1.5 -3" width="2" height="1"
+               material="opacity: 0.5; transparent: true; color: blue;">
+        <a-text value="Hello WebXR!" align="center" position="0 0 0.1" color="white"></a-text>
+      </a-plane>
+
+      <!-- WebXR AR Camera -->
+      <a-entity camera position="0 1.6 0"></a-entity>
+    </a-scene>
   </body>
 </html>
