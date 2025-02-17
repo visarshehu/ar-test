@@ -7,15 +7,11 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-<a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false" renderer="colorManagement: true;">
-      <!-- Transparent Plane acting as a "div" -->
-      <a-plane position="0 1 -3" width="2" height="1" material="opacity: 0.5; transparent: true; color: blue;">
-        <!-- Optional text inside the plane -->
-        <a-text value="Hello, AR World!" align="center" position="0 0 0.1" color="white"></a-text>
-      </a-plane>
-
-      <!-- Camera for AR -->
-      <a-camera position="0 1.6 0"></a-camera>
-    </a-scene>
+<a-scene webxr="optionalFeatures: hit-test;">
+    <a-entity id="target" geometry="primitive: plane; height: 1; width: 2"
+              material="opacity: 0.5; transparent: true; color: blue;"></a-entity>
+    
+    <a-camera id="xr-camera" position="0 1.6 0"></a-camera>
+</a-scene>
   </body>
 </html>
