@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>WebXR AR Mode - Pico 4</title>
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene
-      webxr="referenceSpaceType: local-floor; optionalFeatures: hit-test, dom-overlay, depth-sensing"
-      xr-mode-ui="enabled: true"
-      embedded
-      renderer="colorManagement: true; alpha: true;">
-      
-      <!-- Transparent Floating Plane -->
-      <a-plane position="0 1.5 -3" width="2" height="1"
-               material="opacity: 0.5; transparent: true; color: blue;">
-        <a-text value="Hello WebXR AR on Pico 4!" align="center" position="0 0 0.1" color="white"></a-text>
-      </a-plane>
+<head>
+  <meta charset="utf-8">
+  <title>WebXR AR - Multi Device</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <!-- WebXR Overlay for Menus & Icons -->
+  <div id="overlay" style="
+    position: absolute; 
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    pointer-events: none;">
+    
+    <!-- Clickable Icon -->
+    <button id="myButton" style="
+      position: absolute; 
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(0,0,255,0.7); color: white;
+      font-size: 20px; padding: 10px 20px; border-radius: 10px;
+      pointer-events: auto;">Click Me</button>
+  </div>
 
-      <!-- WebXR AR Camera -->
-      <a-entity camera position="0 1.6 0"></a-entity>
-    </a-scene>
-  </body>
+  <!-- WebXR Scene -->
+  <a-scene
+    webxr="referenceSpaceType: local-floor; optionalFeatures: dom-overlay, hit-test, depth-sensing, hand-tracking;"
+    xr-mode-ui="enabled: true"
+    renderer="colorManagement: true; alpha: true;"
+    embedded>
+    
+    <!-- Virtual 3D Icon in AR Space -->
+    <a-image src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" 
+             position="0 1.5 -2" scale="1 1 1"
+             onclick="alert('Icon Clicked!')">
+    </a-image>
+
+    <!-- AR Camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    document.getElementById("myButton").addEventListener("click", () => {
+        alert("Button Clicked!");
+    });
+  </script>
+
+</body>
 </html>
